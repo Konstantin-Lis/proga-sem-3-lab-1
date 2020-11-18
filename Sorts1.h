@@ -30,19 +30,9 @@ void Learn_Sorting_Time(Sequence<T>* func(Sequence<T>*), Sequence<T>* vec, strin
     cout << sort_name << ": " << finish - start << "ms" << endl;
 }
 
-//Узнаем и выводим время на сортировку и отсортированную последовательность
-template <typename T, typename Conteiner>
-void Learn_Sorting_Time_And_Sorted_Sequence(Sequence<T>* func(Sequence<T>*), Sequence<T>* vec, string sort_name){
-    int start = clock();
-    Conteiner* seq = new ListSequence<T>(func(vec));
-    int finish = clock();
-    cout << sort_name << ": " << finish - start << "ms" << endl;
-    PrintVec(seq);
-}
-
 //Сортировка пузырьком от меньшего к большему
-template <typename T, typename Conteiner>
-Conteiner* Bubble_Sort(Sequence<T>* vec){
+template <typename T>
+Sequence<T>* Bubble_Sort(Sequence<T>* vec){
     int s = vec->GetLength();
     for (int i = 1; i < s; i++){
         for (int j = 0; j < i; j++){
@@ -56,10 +46,9 @@ Conteiner* Bubble_Sort(Sequence<T>* vec){
     return vec;
 }
 
-
 //сортировка вставками от меньшего к большему
-template <typename T, typename Conteiner>
-Conteiner* Insertion_Sort(Sequence<T>* vec){
+template <typename T>
+Sequence<T>* Insertion_Sort(Sequence<T>* vec){
     int s = vec->GetLength();
     for (int i = 1; i < s; i++){
         for (int j = 0; j < i; j++){
@@ -77,8 +66,8 @@ Conteiner* Insertion_Sort(Sequence<T>* vec){
 }
 
 //сортировка выбором от меньшего к большему
-template <typename T, typename Conteiner>
-Conteiner* Choise_Sort(Sequence<T>* vec){
+template <typename T>
+Sequence<T>* Choise_Sort(Sequence<T>* vec){
     int s = vec->GetLength();
     for (int i = 0; i < s; i++){
         int min_ind = i;
@@ -110,8 +99,8 @@ bool Is_In(T elem, Sequence<T>* elements){
 }
 
 //Сама сортировка
-template <typename T, typename Conteiner>
-Conteiner* Counting_Sort(Sequence<T>* vec) {
+template <typename T>
+Sequence<T>* Counting_Sort(Sequence<T>* vec) {
     int s = vec->GetLength();
     int k = 1;
     Sequence<T> *ans = new ArraySequence<T>(0);
@@ -162,8 +151,8 @@ Conteiner* Counting_Sort(Sequence<T>* vec) {
 
 //Сортировка слиянием от меньшего к большему
 //Разделяем данные на 2 части
-template <typename T, typename Conteiner>
-Conteiner* Divide1(Sequence<T>* vec){
+template <typename T>
+Sequence<T>* Divide1(Sequence<T>* vec){
     int s = vec->GetLength();
     Sequence<T>* vec1 = new ArraySequence<T>(s/2);
     for (int i = 0; i < s/2; i++){
@@ -172,8 +161,8 @@ Conteiner* Divide1(Sequence<T>* vec){
     return vec1;
 }
 
-template <typename T, typename Conteiner>
-Conteiner* Divide2(Sequence<T>* vec){
+template <typename T>
+Sequence<T>* Divide2(Sequence<T>* vec){
     int s = vec->GetLength();
     Sequence<T>* vec2 = new ArraySequence<T>(s-s/2);
     for (int i = s/2; i < s; i++){
@@ -183,8 +172,8 @@ Conteiner* Divide2(Sequence<T>* vec){
 }
 
 //Соединяем 2 части в одну
-template <typename T, typename Conteiner>
-Conteiner* Merging(Sequence<T>* vec1, Sequence<T>* vec2){
+template <typename T>
+Sequence<T>* Merging(Sequence<T>* vec1, Sequence<T>* vec2){
     int i1 = 0;
     int i2 = 0;
     int s1 = vec1->GetLength();
@@ -214,8 +203,8 @@ Conteiner* Merging(Sequence<T>* vec1, Sequence<T>* vec2){
 }
 
 //Соединяем разделение и соединение
-template <typename T, typename Conteiner>
-Conteiner* Merge_Sort(Sequence<T>* vec){
+template <typename T>
+Sequence<T>* Merge_Sort(Sequence<T>* vec){
     int s = vec->GetLength();
     if (s > 1){
         Sequence<T>* vec1 = Divide1(vec);
