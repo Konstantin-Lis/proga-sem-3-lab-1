@@ -1,5 +1,8 @@
 #pragma once
+
 #include<stdexcept>
+#include <iostream>
+
 template <typename T>
 struct Node
 {
@@ -45,7 +48,7 @@ template <class T>
 LinkedList<T> ::LinkedList(T* items, const int size)
 {
     if (!items)
-        throw OperationError();
+        throw std::logic_error("no items");
     int actualSize = size >= 0 ? size : 0;
     this->size = actualSize;
     if (!actualSize)
@@ -139,9 +142,9 @@ template <class T>
 T LinkedList<T> ::GetFirst() const
 {
     if (!this->size || !this->pFirst)
-        throw IndexOutOfRange(2);
+        throw std::out_of_range("index out of range");
     if (!this->pFirst->dataCheck)
-        throw NoneValue(1);
+        throw std::logic_error("no data");
     return this->pFirst->data;
 };
 
