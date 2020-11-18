@@ -1,8 +1,7 @@
 #pragma once
 
-//#include "Sorts_for_Arrays.h"
-//#include "Sorts_for_Lists.h"
 #include "Sorts1.h"
+#include "Tests.h"
 
 #include <iostream>
 
@@ -14,6 +13,7 @@ void Interface(){
         int choose = 0;
         cout << "MAIN MENU" << endl;
         cout << "Enter 1 to add a sequence" << endl;
+        cout << "Enter 2 to look tests results" << endl;
         cout << "Enter 0 to exit" << endl;
         cin >> choose;
         cout << endl;
@@ -32,6 +32,13 @@ void Interface(){
                     cin >> size;
                     cout << endl;
                 }
+                break;
+            case 2:
+                cout << "Sorting arrays: " << endl;
+                ArrayTests();
+                cout << "Sorting lists: " << endl;
+                ListTests();
+                cout << endl;
                 break;
             default:
                 break;
@@ -70,7 +77,7 @@ void Interface(){
                 case 1:
                     srand(time(0));
                     for (int i = 0; i < size; i++){
-                        seq->Set(i, rand());
+                        seq->Set(i, rand()%size + 1);
                     }
                     break;
                 case 2:
@@ -96,23 +103,25 @@ void Interface(){
                 cout << "Enter 5 to sort by Merge sort" << endl;
                 cout << "Enter 6 to look at time of every sort" << endl;
                 cout << "CAUTION: If size more than 20.000, computer will work more then 5 seconds for every sort, except Merge sort" << endl;
+                cin >> choose;
+                cout << endl;
                 switch (choose) {
                     case 0:
                         break;
                     case 1:
-                        Learn_Sorting_Time_And_Sorted_Sequence(Bubble_Sort, seq, "Bubble sort");
+                        PrintVec(Bubble_Sort(seq));
                         break;
                     case 2:
-                        Learn_Sorting_Time_And_Sorted_Sequence(Insertion_Sort, seq, "Insertion sort");
+                        PrintVec(Insertion_Sort(seq));
                         break;
                     case 3:
-                        Learn_Sorting_Time_And_Sorted_Sequence(Counting_Sort, seq, "Counting sort");
+                        PrintVec(Counting_Sort(seq));
                         break;
                     case 4:
-                        Learn_Sorting_Time_And_Sorted_Sequence(Choise_Sort, seq, "Choise sort");
+                        PrintVec(Choise_Sort(seq));
                         break;
                     case 5:
-                        Learn_Sorting_Time_And_Sorted_Sequence(Merge_Sort, seq, "Merge sort");
+                        PrintVec(Merge_Sort(seq));
                         break;
                     case 6:
                         Learn_Sorting_Time(Bubble_Sort, seq, "Bubble sort");
